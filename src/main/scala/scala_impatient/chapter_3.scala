@@ -1,7 +1,11 @@
 package scala_impatient
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable
+import scala.collection.JavaConversions.asScalaBuffer
 import scala.util._
 import scala.io.StdIn._
+import java.util.TimeZone.getAvailableIDs
+import java.awt.datatransfer._
 
 object chapter_3 {
 
@@ -75,6 +79,28 @@ object chapter_3 {
     a
   }
 
+  //Q9-Make a collection of all time zones returned by java.util.TimeZone.getAvailableIDs
+  //that are in America. Strip off the "America/" prefix and sort the result.
+  def  q9:ArrayBuffer[String]={
+    var b=new ArrayBuffer[String]()
+    for(i<-getAvailableIDs) {
+      if (i.startsWith("America/"))
+        b+=i.stripPrefix("America/")
+    }
+    b
+  }
+
+  //Q10-Import java.awt.datatransfer._ and make an object of type SystemFlavorMap with
+  //the call
+  //val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+  //Then call the getNativesForFlavor method with parameter DataFlavor.imageFlavor
+  //and get the return value as a Scala buffer. (Why this obscure class? It’s hard
+  //to find uses of java.util.List in the standard Java library.)
+  def q10: mutable.Buffer[String]={
+
+    SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap].getNativesForFlavor(DataFlavor.imageFlavor)
+  }
+
   def main(args:Array[String]): Unit ={
     print("Q 1,2,3. Input size for a random array: ")
     val a=q1_randomArray(readInt())
@@ -131,7 +157,13 @@ object chapter_3 {
     println("")
 
     //Q9
+    var p=q9
+    for (i<- p) print(i+" ")
+    println("")
 
+    //Q10
+    var q=q10
+    for(i<-q10) print (i+" ")
 
   }
 }
