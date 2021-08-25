@@ -1,2 +1,3 @@
 # Scala_practice
-initial push from vcs
+
+Everyday practice files : https://github.com/deepika-walmart/Scala_practice/tree/feature/src/main/scala/scala_impatient
