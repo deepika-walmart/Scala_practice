@@ -1,0 +1,5 @@
+package spark
+
+trait getSparkContext {
+
+}
